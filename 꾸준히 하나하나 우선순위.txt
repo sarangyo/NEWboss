@@ -1,0 +1,125 @@
+
+
+
+다음 업데이트 내용
+환생버그 싹고치기
+행운 수치 600 이상부터 악소권 획득개수 증가률 하락
+강화 수치 -1, -2가 안되게 막아두기
+강화 수치 음수인것 되돌리기
+키 사용되게ㅐ
+2.5배~3배 강화, 파괴확률
+콜라비로 음식상자 구매
+신기합성, 잡템을 활용할 수 있는 합성/제작/조합
+
+다음던전은 열쇠얻어서,
+반지, 투지정신행반
+보스스킨, 다음보스
+
+자동물약 수정
+
+오픈을 목표로하고 우선순위
+다른 방치컨텐츠(낚시)
+
+
+
+
+유저 잡으면 나오는거
+
+지갑.
+이상한 능력치의 룬
+강화서
+유저 아이템
+물약(포션)
+마을 귀환서
+잡템(고기, 이빨, 등등ㅋㅋ)
+
+스킨은 어떻게 할까요?
+보스별 특징, 스킬
+다양한 스토리 퀘스트
+
+
+오베1버전 : 16ae103d-81df-45ac-9b05-c1a3b3e254a3
+오베2버전 : 16ae103d-81df-45ac-9b05-c1a3b3e254a4
+오베3버전 : 16ae103d-81df-45ac-9b05-c1a3b3e254a5 << 이게정식
+정신버전 : 16ae103d-81df-45ac-9b05-c1a3b3e254a6
+
+/script for i, v in pairs(unit.player.GetItems()) do
+	print(v.id, v.dataID)
+end
+
+/script local tem=unit.player.GetItem(6) tem.level = 200
+
+재판/ 심판 시스템 < 채팅신고
+남의 룬 보게끔
+무작위 룬과 호박룬을 어떻게 풀어야 할지 고민중..
+
+오류코드 0001 : 환생오류
+[삭제]오류코드 0002 : Global_map 채널 미기입
+오류코드 0003 : Global_map:potal시 unit객체 nil오류
+오류코드 0004 : 채널변경시도 시 unit 혹은 field객체 nil오류
+오류코드 0005 : unit.String에 값이 안담긴 오류
+오류코드 0006 : 지갑에 없는 id(nil value)
+오류코드 0007 : 악당소환장에서 마을로 복귀시 table nil오류
+
+돈벌어서 룬을 사라는 튜토리얼
+수니몬 지인 선물 코드
+print(Client.GetMap(37, Client.GetMap(38)).channelCount)
+print(Client.GetMap(40, Client.GetMap(37, Client.GetMap(38))).channelCount)
+print(Client.GetMap(2, Client.GetMap(1, Client.GetMap(38))).channelCount)
+public TGameMapStub GetMap(
+	int id,
+	TGameMapStub parent = null
+)
+/script unit.field.SpawnEnemy(107, unit.x, unit.y)
+/script for _, v in pairs (Server.players) do if v.name == '뀨뿌이' then for i=1, 37 do v.unit.AddItem(503) end end end
+
+==============================
+티어
+1. 무색
+2. 무색
+3. <color=#58FA58>
+4. <color=#FFFF00>
+5. <color=#FE2EF7>
+6. <color=#8181F7>
+7. <color=#FFBF00>
+8. <color=#848484>
+9. <color=#DF0101>
+10. <color=#00FFFF>
+
+[자주 쓰이는 문구]
+Utility.JSONSerialize(ㅇㅇ)
+Utility.JSONParse(ㅇㅇ)
+unit.StartGlobalEvent(ㅇㅇ)
+Server.GetTopic("ㅇㅇ").Add(function()  end)
+unit.RefreshStats()
+unit.field.GetFieldVar(ㅇㅇ)
+os.date('%y%m%d', os.time()+32400)
+unit.characterID
+/script unit.job=16
+==============[UI]================
+ㅇㅇ.AddChild(ㅇㅇ)
+Client.RunLater(function() end, 0.5)
+ㅇㅇ.onClick.Add(function() end)
+ㅇㅇ.SetOpacity(200)
+anchor, pivotX
+==============================
+
+<color=#FF0000>[!]</color> 입력할 내용~!\n<size=13><color=#FFFF99>[입력할 내용~!]</color></size>
+
+account@supercat.co.kr
+사업자관련 이메일
+we@supercat.co.kr
+게임관련 이메일
+
+아이템설명은 <size=14> 임.
+os.time은 +32400 가 한국시각임.
+사용중인 개인스트링변수
+1 : 룬
+2 : 당근상점(메뉴)
+3 : 당근상점(폐광 특산품)
+4 : 
+11 : 특산품 음식
+12 : 음식함
+13 : 습격
+사용중인 월드스트링변수
+없음
