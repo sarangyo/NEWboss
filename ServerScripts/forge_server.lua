@@ -1,5 +1,5 @@
 ﻿Glo_neck = {}
-Glo_neck.per = {100, 90, 75, 60, 51, 39, 22, 14, 9, 2, -1, -4, -7}
+Glo_neck.per = {100, 90, 75, 60, 51, 39, 22, 14, 9, 2, -1, -5, -9}
 --Glo_neck.gold = {100, 900, 8100, 24300, 72900, 145800, 291600, 583200, 933120, 2052864}
 Glo_neck.gold = {100, 900, 8100, 24300, 72900, 218700, 656100, 1968300, 5904900, 17714700, 53144100, 159432300, 451111111}
 --Glo_neck.carrot = {10, 30, 50, 90, 250, 720, 1008, 1411, 1975, 4346}
@@ -252,6 +252,10 @@ Server.GetTopic('강화시도').Add(function(table01)
 	if not TemOp[1] then return end
 	
 	local lv = Tem.level
+	if TemOp[1].value <= 0 then
+		unit.SendCenterLabel('남은 강화 횟수가 없습니다.')
+		return
+	end
 	
 	if unit.gameMoney < T.need_gold then
 		unit.SendCenterLabel('골드가 부족합니다.')

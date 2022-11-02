@@ -1,5 +1,6 @@
 Client.RunLater(function()
 	print('[#] 안녕하세요. 잘왔어요.')
+	print('[#] 자사, 회복이 안되시는 분들은 재접속 해주세요.')
 end, 1)
 
 

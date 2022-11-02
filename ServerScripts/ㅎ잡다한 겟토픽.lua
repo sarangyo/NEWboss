@@ -41,8 +41,8 @@ Server.GetTopic("플레이어_습격데이터요구").Add(function()
 		Utility.JSONSerialize(Global_player_party.per))
 end)
 
-Server.GetTopic("큐브상점").Add(function()
-	unit.StartGlobalEvent(46)
+Server.GetTopic("공용이벤트").Add(function(num)
+	unit.StartGlobalEvent(num)
 end)
 
 Server.GetTopic("절전반응").Add(function()

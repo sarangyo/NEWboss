@@ -309,7 +309,7 @@ frame(Menu_Panel, 'Icons/보석상 지선뀨/012.png', '룬', '룬메인', nil, 
 frame(Menu_Panel, 'Icons/9사나운토끼.png', '당근상점', '정수상점_data', 2, 71, 52)
 frame(Menu_Panel, 'Icons/잡템류/Item_0694.png', '판매상점', 'selling', nil, 132, 52)
 frame(Menu_Panel, 'Pictures/절전.png', '절전', '절전반응', nil, 193, 52)
-frame(Menu_Panel, 'Pictures/큐브.png', '큐브상점', '큐브상점', nil, 10, 135)
+frame(Menu_Panel, 'Pictures/큐브.png', '큐브상점', '공용이벤트', 46, 10, 135)
 frame(Menu_Panel, 'Icons/잡템류/Item_0115.png', '음식도감', 'SKIN__', nil, 71, 135)
 frame(Menu_Panel, 'Pictures/캐릭터 선택창/보스얼굴01.png', '보스선택', '캐릭터_선택하기', nil, 132, 135)
 

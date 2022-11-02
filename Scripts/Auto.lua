@@ -11,23 +11,28 @@ Auto.quickSlot = 1
 ---------------------------------------------
 -- 아래는 건들지 마세요
 ---------------------------------------------
-Auto.cnt = 0
+Auto.recnt = 0
+Auto.bocnt = 0
 Auto.rndStopCount = 5 --쌓이는 데이터를 5초마다 초기화하겠다.
 Auto.Hyuk = 0
-asd = nil
 function Auto:Tick(t)
+	self.recnt = self.recnt + t
+	self.bocnt = self.bocnt + t
+	if self.recnt > 4 then
+		Client.FireEvent('공용이벤트', 3)
+        self.recnt = 0
+    end
+	
+	if self.bocnt > 37 then
+		Client.FireEvent('공용이벤트', 37)
+        self.bocnt = 0
+    end
+	
     if not self.object.mode then
         return
     end
 
     local me = Client.myPlayerUnit
-
-    self.cnt = self.cnt + t
-    if self.cnt > self.rndStopCount then
-        me.StopMove()
-        self.target = nil
-        self.cnt = 0
-    end
 
     local target = self.target
 	
@@ -83,7 +88,6 @@ function Auto:Show()
         ob.SetOpacity(150) --이미지의 투명도
         o.body.AddChild(ob) --1번과 2번을 둘다 자식으로 넣는데, 최초에는 1번만 표시를 해주겠다.
     end
-	asd = o.body
     o.mode = false
     o.body.onClick.Add(function()
 		if self.Hyuk == 0 then
