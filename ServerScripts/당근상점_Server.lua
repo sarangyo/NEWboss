@@ -83,16 +83,16 @@ data['5'][13] = {id=507, cost=200}
 
 data['6'] = {}
 data['6'].item_dataID = 419
-data['6'][1] = {id=483, cost=999999}
-data['6'][2] = {id=489, cost=999999}
-data['6'][3] = {id=495, cost=999999}
+data['6'][1] = {id=483, cost=777777}
+data['6'][2] = {id=489, cost=777777}
+data['6'][3] = {id=495, cost=777777}
 data['6'][4] = {id=505, cost=8500}
 data['6'][5] = {id=505, cost=8500}
 data['6'][6] = {id=505, cost=8500}
 data['6'][7] = {id=505, cost=8500}
 data['6'][8] = {id=505, cost=8500}
 data['6'][9] = {id=510, cost=85000}
-data['6'][10] = {id=511, cost=311500}
+data['6'][10] = {id=511, cost=189200}
 
 local user_data = {}
 for i=1, 300 do
