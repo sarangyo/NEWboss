@@ -1,6 +1,7 @@
 local admin = {}
 admin['수니몬'] = true
 admin['TEST_1'] = true
+admin['감사해'] = true
 
 local String = {}
 String['/다이'] = function(unit)

@@ -20,9 +20,9 @@ local line = 2
 rune.road = false
 rune.black_panel = nil
 
-local rune_inven, rune_inven_img, rune_inven_but = {}, {}, {}
+local rune_inven, rune_inven_img, rune_inven_but, rune_inven_lv = {}, {}, {}, {}
 local inven_back = 0
-local rune_app, rune_app_img, rune_app_but = {}, {}, {}
+local rune_app, rune_app_img, rune_app_but, rune_app_lv = {}, {}, {}, {}
 local app_back = 0
 local app_type = {} -- 1:장착중 / 2:빈칸 / 3:자물쇠
 local inven_type = {} -- 1:존재 / 2:빈칸
@@ -127,9 +127,10 @@ local function pl() -- 연속 클릭 방지
 	end
 end
 
-function rune:data_show(id, txt)
+function rune:data_show(id, txt, level)
+	local lv = level == 0 and '' or '<color=#00FF00>+'..level..' </color>'
 	if self.UI_data then
-		self.UI_but.text = '<size=20>'..Client.GetItem(id).name..'</size>\n\n'..(txt=='' and '옵션없음' or txt)
+		self.UI_but.text = '<size=18>'..lv..Client.GetItem(id).name..'</size>\n\n'..(txt=='' and '옵션없음' or txt)
 	else
 		self.panel.DOMove(Point(-120, 0), 1)
 		
@@ -145,7 +146,7 @@ function rune:data_show(id, txt)
 		self.UI_but.SetOpacity(0)
 		self.UI_data.AddChild(self.UI_but)
 		
-		self.UI_but.text = '<size=20>'..Client.GetItem(id).name..'</size>\n\n'..self.UI_but.text
+		self.UI_but.text = '<size=18>'..lv..Client.GetItem(id).name..'</size>\n\n'..self.UI_but.text
 		
 		self.UI_but.onClick.Add(function()
 			self.panel.DOMove(Point(0, 0), 1)
@@ -157,9 +158,9 @@ end
 
 function rune:show()
 	if self.panel then return end
-	rune_inven, rune_inven_img, rune_inven_but = {}, {}, {}
+	rune_inven, rune_inven_img, rune_inven_but, rune_inven_lv = {}, {}, {}, {}
 	inven_back = 0
-	rune_app, rune_app_img, rune_app_but = {}, {}, {}
+	rune_app, rune_app_img, rune_app_but, rune_app_lv = {}, {}, {}, {}
 	app_back = 0
 	app_type = {}
 	inven_type = {}
@@ -241,6 +242,13 @@ function rune:show()
 		rune_inven[i].AddChild(rune_inven_img[i])
 		inven_type[i] = 1
 		
+		local lv = v.Lv == 0 and '' or '<color=#00FF00>+'..v.Lv..'</color>'
+		rune_inven_lv[i] = Text(lv, Rect(0, 0, 40, 40))
+		rune_inven_lv[i].textAlign = 0
+		rune_inven_lv[i].borderEnabled = true
+		rune_inven_lv[i].borderDistance = Point(1, 1)
+		rune_inven_img[i].AddChild(rune_inven_lv[i])
+		
 		rune_inven_but[i] = Button('', Rect(0, 0, 40, 40))
 		rune_inven_but[i].SetOpacity(0)
 		rune_inven[i].AddChild(rune_inven_but[i])
@@ -266,7 +274,7 @@ function rune:show()
 				end
 			end
 			-- 룬왼칸
-			self:data_show(v.dataID, v.op_text:gsub("<color>", "</color>"))
+			self:data_show(v.dataID, v.op_text:gsub("<color>", "</color>"), v.Lv)
 		end)
 	end
 	ceil_panel[1].height = 2+42*ceiling(#self.data/3)
@@ -279,8 +287,15 @@ function rune:show()
 		ceil_panel[2].AddChild(rune_app[i])
 		
 		rune_app_img[i] = Image('Pictures/룬빈칸.png', Rect(0, 0, 40, 40))
-		if rune.user_data['id_'..i] then
-			rune_app_img[i].SetImageID(Client.GetItem(rune.user_data['id_'..i].dataID).imageID)
+		rune_app_lv[i] = Text('', Rect(0, 0, 40, 40))
+		rune_app_lv[i].textAlign = 0
+		rune_app_lv[i].borderEnabled = true
+		rune_app_lv[i].borderDistance = Point(1, 1)
+		local dataT = rune.user_data['id_'..i]
+		if dataT then
+			rune_app_img[i].SetImageID(Client.GetItem(dataT.dataID).imageID)
+			local lv = dataT.Lv == 0 and '' or '<color=#00FF00>+'..dataT.Lv..'</color>'
+			rune_app_lv[i].text = lv
 			app_type[i] = 1
 		else
 			app_type[i] = 2
@@ -288,6 +303,7 @@ function rune:show()
 		end
 		
 		rune_app[i].AddChild(rune_app_img[i])
+		rune_app_img[i].AddChild(rune_app_lv[i])
 		
 		rune_app_but[i] = Button('', Rect(0, 0, 40, 40))
 		rune_app_but[i].SetOpacity(0)
@@ -318,7 +334,7 @@ function rune:show()
 				local Data2 = self.user_data['id_'..i]
 				if Data2 then
 					-- 룬오른칸
-					self:data_show(Data2.dataID, Data2.op_text:gsub("<color>", "</color>"))
+					self:data_show(Data2.dataID, Data2.op_text:gsub("<color>", "</color>"), Data2.Lv)
 				end
 			end
 		end)
@@ -336,6 +352,12 @@ function rune:show()
 		app_type[i] = 3
 		rune_app_img[i].SetOpacity(140)
 		rune_app[i].AddChild(rune_app_img[i])
+		
+		rune_app_lv[i] = Text('', Rect(0, 0, 40, 40))
+		rune_app_lv[i].textAlign = 0
+		rune_app_lv[i].borderEnabled = true
+		rune_app_lv[i].borderDistance = Point(1, 1)
+		rune_app_img[i].AddChild(rune_app_lv[i])
 		
 		rune_app_but[i] = Button('', Rect(0, 0, 40, 40))
 		rune_app_but[i].SetOpacity(0)
@@ -366,7 +388,7 @@ function rune:show()
 				local Data2 = self.user_data['id_'..i]
 				if Data2 then
 					-- 해금한 룬칸
-					self:data_show(Data2.dataID, Data2.op_text:gsub("<color>", "</color>"))
+					self:data_show(Data2.dataID, Data2.op_text:gsub("<color>", "</color>"), Data2.Lv)
 				end
 			end
 		end)
@@ -432,11 +454,13 @@ Client.GetTopic("룬비정상종료").Add(function()
 	end
 end)
 
-Client.GetTopic("룬장착완료").Add(function(txt, key, key_second, id, real_id, dumy_table)
+Client.GetTopic("룬장착완료").Add(function(txt, key, key_second, id, real_id, dumy_table, backLv)
 	Client.myPlayerUnit.PlaySE('룬 효과음/룬 장착 효과음.ogg', 1)
 	rune.user_data = Utility.JSONParse(txt)
 	rune_app_img[key].SetImageID(Client.GetItem(rune.user_data['id_'..key].dataID).imageID)
-	
+	local level = rune.user_data['id_'..key].Lv
+	local lv = (level == 0 or level == nil or level == '') and '' or '<color=#00FF00>+'..level..' </color>'
+	rune_app_lv[key].text = lv
 	rune_app_img[key].SetOpacity(255)
 	--rune_app_but[key].onClick.Remove(Open)
 	app_type[key] = 1
@@ -455,14 +479,18 @@ Client.GetTopic("룬장착완료").Add(function(txt, key, key_second, id, real_i
 		text = text..filter(b.statID, b.value)..'\n'
 	end
 	
+	local lv2 = (backLv == 0 or backLv == nil or backLv == '') and '' or '<color=#00FF00>+'..backLv..' </color>'
 	if id==0 then
 		rune_inven_img[key_second].image = 'Pictures/룬빈칸.png'
+		rune_inven_lv[key_second].text = ''
 		rune_inven_img[key_second].SetOpacity(140)
 		rune_inven_but[key_second].onClick.Remove(Open)
 		inven_type[key_second] = 2
 	else
 		rune_inven_img[key_second].SetImageID(Client.GetItem(id).imageID)
+		rune_inven_lv[key_second].text = lv2
 		rune.data[key_second].op_text = text:gsub("<color>", "</color>")
+		rune.data[key_second].Lv = backLv
 		rune.data[key_second].dataID = id
 		rune.data[key_second].id = real_id
 	end

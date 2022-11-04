@@ -1,12 +1,12 @@
 ﻿Glo_neck = {}
-Glo_neck.per = {100, 90, 75, 60, 51, 39, 22, 14, 9, 2, -1, -5, -9}
+Glo_neck.per = {100, 90, 75, 60, 51, 39, 22, 14, 9, 2, -1, -4, -9, -15}
 --Glo_neck.gold = {100, 900, 8100, 24300, 72900, 145800, 291600, 583200, 933120, 2052864}
-Glo_neck.gold = {100, 900, 8100, 24300, 72900, 218700, 656100, 1968300, 5904900, 17714700, 53144100, 159432300, 451111111}
+Glo_neck.gold = {100, 900, 8100, 24300, 72900, 218700, 656100, 1968300, 5904900, 17714700, 53144100, 159432300, 451111111, 7450101010}
 --Glo_neck.carrot = {10, 30, 50, 90, 250, 720, 1008, 1411, 1975, 4346}
-Glo_neck.carrot = {10, 30, 50, 90, 125, 240, 488, 711, 1375, 2149, 12447, 99999, 111111}
-Glo_neck.forge = {1, 2, 3, 4, 5, 6, 10, 15, 21, 40, 55, 80, 111}
+Glo_neck.carrot = {10, 30, 50, 90, 125, 240, 488, 711, 1375, 2149, 12447, 99999, 111111, 444444}
+Glo_neck.forge = {1, 2, 3, 4, 5, 6, 10, 15, 21, 40, 55, 80, 111, 222}
 
-local neckID = {329, 330, 331, 332, 342, 343, 344, 345, 398, 399, 400, 401, 403, 404, 405, 406} -- 목걸이
+local neckID = {329, 330, 331, 332, 342, 343, 344, 345, 398, 399, 400, 401, 403, 404, 405, 406, 514, 515, 516, 517} -- 목걸이
 local player = {478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495} -- 용사장비
 Glo_neck.id = {}
 for _, v in ipairs(neckID) do
@@ -66,7 +66,7 @@ Glo_neck.id['331'].stat = {2, 7, 102}
 Glo_neck.id['331'].value = {8, 70, 2}
 Glo_neck.id['331'].forge_id = 336
 Glo_neck.id['332'].stat = {6, 101}
-Glo_neck.id['332'].value = {75, 2}
+Glo_neck.id['332'].value = {150, 2}
 Glo_neck.id['332'].forge_id = 337
 
 Glo_neck.id['342'].stat = {0, 105}
@@ -79,7 +79,7 @@ Glo_neck.id['344'].stat = {2, 7, 102}
 Glo_neck.id['344'].value = {16, 140, 4}
 Glo_neck.id['344'].forge_id = 336
 Glo_neck.id['345'].stat = {6, 101}
-Glo_neck.id['345'].value = {150, 4}
+Glo_neck.id['345'].value = {300, 4}
 Glo_neck.id['345'].forge_id = 337
 
 Glo_neck.id['398'].stat = {0, 105}
@@ -92,7 +92,7 @@ Glo_neck.id['400'].stat = {2, 7, 102}
 Glo_neck.id['400'].value = {32, 280, 8}
 Glo_neck.id['400'].forge_id = 336
 Glo_neck.id['401'].stat = {6, 101}
-Glo_neck.id['401'].value = {300, 8}
+Glo_neck.id['401'].value = {600, 8}
 Glo_neck.id['401'].forge_id = 337
 
 Glo_neck.id['403'].stat = {0, 105}
@@ -105,8 +105,21 @@ Glo_neck.id['405'].stat = {2, 7, 102}
 Glo_neck.id['405'].value = {64, 560, 16}
 Glo_neck.id['405'].forge_id = 336
 Glo_neck.id['406'].stat = {6, 101}
-Glo_neck.id['406'].value = {600, 16}
+Glo_neck.id['406'].value = {1200, 16}
 Glo_neck.id['406'].forge_id = 337
+
+Glo_neck.id['514'].stat = {0, 105}
+Glo_neck.id['514'].value = {64, 48}
+Glo_neck.id['514'].forge_id = 334
+Glo_neck.id['515'].stat = {4, 5}
+Glo_neck.id['515'].value = {64, 480}
+Glo_neck.id['515'].forge_id = 335
+Glo_neck.id['516'].stat = {2, 7, 102}
+Glo_neck.id['516'].value = {128, 1120, 32}
+Glo_neck.id['516'].forge_id = 336
+Glo_neck.id['517'].stat = {6, 101}
+Glo_neck.id['517'].value = {2400, 32}
+Glo_neck.id['517'].forge_id = 337
 
 local var = 53 -- 장비 선택에 쓰일 변수번호
 

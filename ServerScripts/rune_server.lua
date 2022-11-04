@@ -865,6 +865,13 @@ rune_data[321].range = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 15}
 rune_data[321].rand = {35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35}
 rune_data[321].bool = true
 -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[322] = {}
+rune_data[322].stat = {0, 1, 2, 3, 4, 5, 6, 7, 101, 102, 104}
+rune_data[322].value = {135, 10, 135, 10, 100, 600, 900, 600, 30, 30, 10}
+rune_data[322].range = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 15}
+rune_data[322].rand = {35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35}
+rune_data[322].bool = true
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
 rune_data[323] = {}
 rune_data[323].stat = {}
 rune_data[323].value = {}
@@ -1170,6 +1177,11 @@ rune_data[444].stat = {101, 102, 108, 109}
 rune_data[444].value = {33333, 33333, 777, 22}
 rune_data[444].range = {0, 0, 0, 0}
 -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[445] = {}
+rune_data[445].stat = {5, 106, 109}
+rune_data[445].value = {67000, 2222, 11}
+rune_data[445].range = {0, 0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
 rune_data[472] = {}
 rune_data[472].stat = {}
 rune_data[472].value = {}
@@ -1295,7 +1307,25 @@ rune_data[504].stat = {108, 109}
 rune_data[504].value = {154, 6}
 rune_data[504].range = {0.5, 0}
 -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
-
+rune_data[514] = {}
+rune_data[514].stat = {126}
+rune_data[514].value = {14}
+rune_data[514].range = {0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[515] = {}
+rune_data[515].stat = {126}
+rune_data[515].value = {14}
+rune_data[515].range = {0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[516] = {}
+rune_data[516].stat = {126}
+rune_data[516].value = {14}
+rune_data[516].range = {0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[517] = {}
+rune_data[517].stat = {126}
+rune_data[517].value = {14}
+rune_data[517].range = {0}
 
 
 
@@ -1514,7 +1544,7 @@ Server.GetTopic("룬장착하기").Add(function(T) --교체이기도 함.
 	end
 	
 	local T2 = Utility.JSONParse(unit.GetStringVar(rune_StringVar))
-	local T3_id, real_id = 0, 0
+	local T3_id, real_id, lv = 0, 0, 0
 	local index = 'id_'..key
 	local dumy_table = {}
 	if T2[index] then --적용되고있는 룬
@@ -1524,6 +1554,8 @@ Server.GetTopic("룬장착하기").Add(function(T) --교체이기도 함.
 		for i, v in ipairs(T2[index].op) do
 			Utility.AddItemOption(item, 3, v.statID, v.value)
 		end
+		item.level = T2[index].Lv
+		lv = item.level
 		
 		unit.AddItemByTItem(item, false)
 		real_id = item.id
@@ -1545,7 +1577,7 @@ Server.GetTopic("룬장착하기").Add(function(T) --교체이기도 함.
 	local txt = Utility.JSONSerialize(T2)
 	unit.SetStringVar(rune_StringVar, txt)
 	unit.SendCenterLabel('슬롯에 '..Server.GetItem(Tem.dataID).name..'을 끼워넣었습니다.')
-	unit.FireEvent('룬장착완료', txt, key, T1[3], T3_id, real_id, Utility.JSONSerialize(dumy_table))
+	unit.FireEvent('룬장착완료', txt, key, T1[3], T3_id, real_id, Utility.JSONSerialize(dumy_table), lv)
 	
 	unit.RemoveItemByID(id, 1, false)
 	

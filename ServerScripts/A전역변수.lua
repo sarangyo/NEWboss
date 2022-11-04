@@ -375,6 +375,7 @@ past_order[9] = {per=44, carrot=143333}
 past_order[10] = {per=33, carrot=566666}
 past_order[11] = {per=28, carrot=933333}
 past_order[12] = {per=12, carrot=3133433}
+past_order[13] = {per=-6, carrot=7575757}
 
 function past_orderOK(id)
 	local Tem = unit.player.GetItem(id)
@@ -811,6 +812,7 @@ function Global_random_weight:main(id, num)
 			end
 		end
 		unit.RemoveItem(num, 1, false)
+		item.level = index
 		unit.player.SendItemUpdated(item)
 		
 		if index >= 7 then
@@ -928,6 +930,12 @@ Global_FaceRune[14] = {
 Global_FaceRune[15] = {
 	id = 444,
 	var = 92,
+	maxCount = 1,
+	per = 10
+}
+Global_FaceRune[16] = {
+	id = 445,
+	var = 93,
 	maxCount = 1,
 	per = 10
 }

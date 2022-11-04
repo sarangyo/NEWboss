@@ -1,7 +1,7 @@
-local Super_Admin = {'감사해', '수니몬', 'TEST_1'} 
+local Super_Admin = {'감사해', '수니몬', 'TEST_1', '감사해'} 
 --최고운영자(모든권한)
 
-local Assi_Admin = {'없음요들레이'}
+local Assi_Admin = {'없음요들레이요를레이이 히히'}
 --부운영자(밴, 출두, 소환, 인밴창고 보기), (아이템 지급, 회수권한 없음)
 
 for _, v in ipairs(Super_Admin) do Super_Admin[v] = true end
