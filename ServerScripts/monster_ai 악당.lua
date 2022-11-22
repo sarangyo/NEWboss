@@ -84,6 +84,7 @@ Server.SetMonsterAI(50, function(enemy, ai, event, data)
     end
 
     if (event == AI_ATTACKED) then
+		-- print(enemy.hp)
         if ai.GetTargetUnit() then
 			ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
         else

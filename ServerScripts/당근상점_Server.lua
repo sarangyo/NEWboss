@@ -94,6 +94,12 @@ data['6'][8] = {id=505, cost=8500}
 data['6'][9] = {id=510, cost=85000}
 data['6'][10] = {id=511, cost=189200}
 
+data['7'] = {}
+data['7'].item_dataID = 417
+data['7'][1] = {id=508, cost=500}
+data['7'][2] = {id=524, cost=200}
+data['7'][3] = {id=525, cost=200}
+
 local user_data = {}
 for i=1, 300 do
 	user_data[i] = false

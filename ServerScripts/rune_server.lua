@@ -26,6 +26,7 @@ local rune_NumberVar = { --statID과 변수를 대칭시켜주세요.
 	[107]=132,
 	[108]=133,
 	[109]=134,
+	[106]=141,
 }
 rune_data.open_gold = {100, 400, 1000, 2500, 7000, 20000, 30000, 40000, 55000, 
 70000, 90000, 120000, 150000, 200000, 260000, 330000, 400000, 500000, 600000, 
@@ -1178,9 +1179,9 @@ rune_data[444].value = {33333, 33333, 777, 22}
 rune_data[444].range = {0, 0, 0, 0}
 -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
 rune_data[445] = {}
-rune_data[445].stat = {5, 106, 109}
+rune_data[445].stat = {5, 108, 109}
 rune_data[445].value = {67000, 2222, 11}
-rune_data[445].range = {0, 0}
+rune_data[445].range = {0, 0, 0}
 -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
 rune_data[472] = {}
 rune_data[472].stat = {}
@@ -1326,6 +1327,16 @@ rune_data[517] = {}
 rune_data[517].stat = {126}
 rune_data[517].value = {14}
 rune_data[517].range = {0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[520] = {}
+rune_data[520].stat = {126}
+rune_data[520].value = {12}
+rune_data[520].range = {0}
+-- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · -- · 
+rune_data[521] = {}
+rune_data[521].stat = {126}
+rune_data[521].value = {12}
+rune_data[521].range = {0}
 
 
 
@@ -1608,7 +1619,8 @@ Server.onRefreshStats.Add(function(unit)
 	local GetVar, GetStat = unit.GetVar, unit.GetStat
 	local SetVar, SetStat = unit.SetVar, unit.SetStat
 	
-	local rune_allStat = 1+unit.GetStat(105)*0.0000667 -- 15000당 100%
+	--local rune_allStat = 1+unit.GetStat(105)*0.0000667 -- 15000당 100%
+	local rune_allStat = 1+unit.GetStat(105)^0.554153*0.0074
 	for _, v in ipairs(stat_table) do
 		SetStat(v, GetStat(v)+GetVar(rune_NumberVar[v])*rune_allStat)
 	end
@@ -1620,14 +1632,20 @@ Server.onRefreshStats.Add(function(unit)
 	
 	SetStat(6, GetStat(6)+GetVar(47)) -- 음식으로 인한 체력 상승
 	
-	SetStat(0, GetStat(0)*(1+GetStat(107)*0.0000834)) -- 12000당 100%
-	SetStat(2, GetStat(2)*(1+GetStat(107)*0.0000834))
-	SetStat(101, GetStat(101)*(1+GetStat(108)*0.00025)) -- 4000당 100%
-	SetStat(102, GetStat(102)*(1+GetStat(108)*0.00025))
+	-- SetStat(0, GetStat(0)*(1+GetStat(107)*0.0000834)) -- 12000당 100%
+	SetStat(0, GetStat(0)*(1+GetStat(107)^0.57605*0.0074))
+	SetStat(2, GetStat(2)*(1+GetStat(107)^0.57605*0.0074))
+	-- SetStat(101, GetStat(101)*(1+GetStat(108)*0.00025)) -- 4000당 100%
+	SetStat(101, GetStat(101)*(1+GetStat(108)^0.59334*0.011))
+	SetStat(102, GetStat(102)*(1+GetStat(108)^0.59334*0.011))
 	
 	unit.moveSpeed = Character(id).moveSpeed + (1-400/(400+GetStat(4)))*400
 	
 	SetStat(103, unit.moveSpeed)
+	
+	SetStat(6,5000000)
+	SetStat(7,5000000)
+	SetStat(0,600000)
 end)
 
 --[[

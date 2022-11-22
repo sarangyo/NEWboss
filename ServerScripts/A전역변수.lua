@@ -951,7 +951,3 @@ function Global_FaceRune.main(tier)
 end
 
 
-
-
-
-

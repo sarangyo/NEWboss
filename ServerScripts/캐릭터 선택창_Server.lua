@@ -8,6 +8,9 @@ ch.field[8] = true
 ch.field[21] = true
 ch.field[49] = true
 ch.field[75] = true
+ch.field[90] = true
+ch.field[95] = true
+ch.field[96] = true
 
 local mapID, X, Y = 1, 14, 10 -- 캐릭터 선택이 끝나고 이동하고 싶은 맵과 이벤트상 X, Y좌표
 Server.GetTopic('캐릭터_선택완료').Add(function(table01)

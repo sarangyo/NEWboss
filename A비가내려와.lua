@@ -12,14 +12,14 @@
 
 local Rain = {}
 
-Rain.time = 3 -- 3초마다(떨어지는 속도 조절됨)
-Rain.count = 30 -- 30개씩 비가내려와, 즉 0.1초마다 1개겠죠?
-Rain.path = 'Pictures/룬빈칸.png' -- 이미지 경로
+Rain.time = 5 -- 3초마다(떨어지는 속도 조절됨)
+Rain.count = 400 -- 30개씩 비가내려와, 즉 0.1초마다 1개겠죠?
+Rain.path = 'Icons/9사나운토끼.png' -- 이미지 경로
 Rain.objW = 32 -- 가로크기
 Rain.objH = 32 -- 세로크기
 
 local ew, eh = 100, 100 -- 화면 어디 지점에서 떨어질건지(랜덤값) x, y
-local fw, fh = 150, Client.height+150 -- 어디 까지 떨어질건지(고정값) x, y
+local fw, fh = 150, Client.height+100 -- 어디 까지 떨어질건지(고정값) x, y
 --[[ 여기까지 터치 ]]
 --[[	]]
 --[[	]]

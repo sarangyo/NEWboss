@@ -150,6 +150,7 @@ m(89, m(75, folder)).channelCount = 5 --[[서리동굴11]] Global_map[89] = 5
 m(90, m(49, folder)).channelCount = 99 --[[내부]] Global_map[90] = 99
 m(91, m(75, folder)).channelCount = 5 --[[위험1]] Global_map[91] = 5
 m(92, m(75, folder)).channelCount = 5 --[[위험2]] Global_map[92] = 5
+m(96, m(95, folder)).channelCount = 99 --[[내부]] Global_map[96] = 99
 
 
 

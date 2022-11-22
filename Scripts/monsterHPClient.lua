@@ -1,4 +1,36 @@
-﻿
+﻿--스크립트 초보라 쓸때없는 문장이 많습니다
+-- 지금보니까 클라에 렉이 잔뜩쌓이는 구조였네요 헉.. 이거 고쳐가지고 저도 써야개ㅔㅆ당
+--------------------------------------------------------------------------
+
+--사용법 : 1. 서버스크립트와 클라이언트스크립트, pictures 폴더 안에있는 자료를 모두 게임파일 내로 이동시켜주세요
+--          2. 데미지콜백은 하나만 사용가능함으로 다른 스크립트에서 데미지콜백을 사용중이라면 합쳐주세요
+--          3. 패널 이름이 같은게 존재한다면 오류가 날수도 있습니다. 패널이름을 바꿔주세요. 스크립트를 하나하나 빼가면서 어떤 파일과 충돌인지 찾아보세요
+-- 지금 143줄이거든요 이게 얼마나 줄여지는지 보세용 102줄 됏네요 ㅎㅎ 런레이터되는것만 확인할게요 넹 아그리고 보스이름도 더 들어가요 이제 아아 봤어용
+--[[
+	이게 음 객체를 계쏙 생성파괴 시키고 있었어요 그러면 메모리에 쌓이게되고 가비지컬렉터가 발동하면 이제 게임이 느려지거든요
+	ㄷ ㅏ행히 재접속하면 문제는 해결되겠지만 ㅎㅎ
+	그래서 오브젝트 풀링이라고 한번 생성해놓고 그거를 계속 가져다 쓰는 방식으롭 바꿨구여
+	체력바도 어거지로 위치맞춘 느낌이라 좀 컨트롤하기 쉽게 바꿨어요 아아 공감하는게 
+	이게 시간좀지나면 다들 버벅거리더라구요 또 신기하게 재접하면 렉이사라지는게 이거때문이였구나
+	다른 스크립트들도 보긴해야돼요 일단 이거는 해결됐기 때문에 수명이 몇시간은 더 늘었을거에요 와 감사합니다.ㅋㅋㅋ
+]]
+---------------------------------------------------------------------------
+--경고
+
+--문제 발생 시 책임은 사용자에게 있습니다.
+
+----------------------------------------------------------------------------
+--설정
+
+--첫타격후 체력바가 사라질시간(단위 : 초)
+
+local bt = 7
+
+--몬스터 이름 글자 크기
+
+local nts = 18
+----------------------------------------------------------------------------
+
 local mon = Client.GetMonster
 local mon_data = {}
 mon_data[5] = '쥐돌'
@@ -42,109 +74,53 @@ mon_data[107] = '타나토스'
 mon_data[110] = '타나데스'
 mon_data[111] = '타나탁스'
 
---첫타격후 체력바가 사라질시간(단위 : 초)
 
-local bt = 10
+local img = Image("Pictures/악당HP/hppenal.png", Rect(Client.width*0.30, Client.height*0.15, 250, 26))
+img.showOnTop = true
 
+local HPbar = Image("Pictures/악당HP/hpbar5.png", Rect(1, 1, img.width-2, img.height-2))
+img.AddChild(HPbar)
 
---몬스터 이름 글자 크기
+local hpText = Text('100%', Rect(0, 0, img.width, img.height))
+hpText.borderEnabled = true
+hpText.textAlign = 4
+hpText.textSize = 14
+img.AddChild(hpText)
 
-local nts = 16
-----------------------------------------------------------------------------
-local bp = nil
-local hpText = nil
-local hpbar = nil
-local function ruu() --파괴
-   bp.Destroy()
-   hpText.Destroy()
-   bp = nil
-end
+local nnText = Text('asdsdasadasd', Rect(0, -15, img.width, 30))
+nnText.borderEnabled = true
+nnText.textAlign = 1
+nnText.textSize = nts
+img.AddChild(nnText)
 
+img.visible = false
 
-local function ru() --텍스트만 변경
-	local hpt = bhhb/bhb * 100
-	hpt = hpt * 100
-	hpt = math.floor(hpt)
-	hpt = hpt * 0.01
+local bnnb, bhb = '', 0
+local function ru()
+	local hpt = string.format('%.2f', bhhb/bhb * 100)
 
 	hpText.text = hpt .. "%"
-	
-	-- bnnb = bnnb:gsub("\\n", "")
-	-- bnnb = bnnb:gsub("악당", "")
-	
-	nnText.text = bnnb
-	nn1Text.text =  bnnb
-	nn2Text.text =  bnnb
-	nn3Text.text =  bnnb
-	nn4Text.text =  bnnb
-
-	hpbar.DOScale(Point(bhhb/bhb, 1), 0.5)
+	-- hpText.text = bhhb.."/"..bhb
 
 	if bhhb <= 0 then
-		ruu()
+		img.visible = false
+	else
+		nnText.text = bnnb
+		HPbar.DOScale(Point(bhhb/bhb, 1), 0.5)
 	end
 end
 
 local function rug()
-	if bp == nil then
-		bp = Image("Pictures/악당HP/hppenal.png", Rect(Client.width*0.30, Client.height*0.03, 250, 150))
-		bp.SetOpacity(180)
-		
-		hpbar = Image("Pictures/악당HP/hpbar5.png", Rect(bp.width*0.04, bp.height*0.44, 230, 17.5))
-		hpbar.SetOpacity(180)
-		bp.AddChild(hpbar)
-
-		hpText = Text("100%", Rect(bp.width*0.04, bp.height*0.44, 218, 17.5))
-		hpText.textAlign = 5
-		hpText.textSize = 12
-		bp.AddChild(hpText)
-
-		bpw = bp.width*0.2
-		bph = bp.height*0.3
-
-
-		nn1Text = Text()
-		nn1Text.rect = Rect(bpw+1, bph+1, 150, 30)
-		nn1Text.textAlign = 4
-		nn1Text.color = Color(0,0,0)
-		nn1Text.textSize = nts
-		bp.AddChild(nn1Text)
-
-		nn2Text = Text()
-		nn2Text.rect = Rect(bpw+1, bph-1, 150, 30)
-		nn2Text.textAlign = 4
-		nn2Text.color = Color(0,0,0)
-		nn2Text.textSize = nts
-		bp.AddChild(nn2Text)
-
-		nn3Text = Text()
-		nn3Text.rect = Rect(bpw-1, bph-1, 150, 30)
-		nn3Text.textAlign = 4
-		nn3Text.color = Color(0,0,0)
-		nn3Text.textSize = nts
-		bp.AddChild(nn3Text)
-
-		nn4Text = Text()
-		nn4Text.rect = Rect(bpw-1, bph-1, 150, 30)
-		nn4Text.textAlign = 4
-		nn4Text.color = Color(0,0,0)
-		nn4Text.textSize = nts
-		bp.AddChild(nn4Text)
-
-		nnText = Text()
-		nnText.rect = Rect(bpw, bph, 150, 30)
-		nnText.textAlign = 4
-		nnText.textSize = nts
-		bp.AddChild(nnText)
-
+	if img.visible == false then
+		img.visible = true
 		ru()
-		Client.RunLater(ruu, bt) --bt초 후 파괴
-
+		Client.RunLater(function()
+			img.visible = false
+		end, bt)
 	else
 		ru()
 	end
 end
-
 
 Client.GetTopic("bh").Add(function(bhha, id)
 	bhb = mon(id).maxHP --현재hp
@@ -158,5 +134,4 @@ Client.GetTopic("bh").Add(function(bhha, id)
 	rug()
 end)
 
-
-
+-- 일단한번 테스트할게요
