@@ -1,7 +1,8 @@
 Client.RunLater(function()
 	print('[#] 안녕하세요. 잘왔어요.')
-	print('[#] 자사, 회복이 안되시는 분들은 재접속 해주세요.')
-	print('[#] 본계1, 부계3 으로 최대 4계정까지 이용 가능해요.')
+	print('<color=#FFFF00>[#] 자사, 회복이 안되시는 분들은 재접속 해주세요.</color>')
+	print('<color=#FFFF00>[#] 본계1, 부계3 으로 최대 4계정까지 이용 가능해요.</color>')
+	print('<color=#FFFF00>[#] 불법 프로그램, 메크로 영구정지입니다.</color>')
 end, 1)
 
 
