@@ -1,6 +1,12 @@
 local ch = {}
-ch.dataID = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,} -- 캐릭터id
-ch.lv = {0, 0, 0, 10, 25, 50, 100, 250, 400, 550, 800, 1200, 2000, 3000, 4000, 5000}
+ch.dataID = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17} -- 캐릭터id
+ch.lv = {0, 0, 0, 10, 25, 50, 100, 250, 400, 550, 800, 1200, 2000, 3000, 4000, 5000, 0}
+ch.var = {
+	[17] = {148}
+}
+ch.value = {
+	[17] = {24}
+}
 ch.job = {} -- 바꿀 직업(내 게임에는 필요없어서 빈테이블)
 ch.field = {} -- 특정맵에서만 캐릭터 변경가능
 ch.field[1] = true
@@ -18,6 +24,15 @@ Server.GetTopic('캐릭터_선택완료').Add(function(table01)
 	
 	local lev = T[1]
 	if unit.level >= ch.lv[lev] then
+		if ch.var[lev] then
+			for i, v in ipairs(ch.var[lev]) do
+				if ch.value[lev][i] > unit.GetVar(v) then
+					unit.FireEvent('ch:ShowAlert', '자격이 부족합니다.')
+					return
+				end
+			end
+		end
+		
 		unit.job = 1
 		unit.characterID = ch.dataID[lev]
 		unit.FireEvent('선택창_종료')

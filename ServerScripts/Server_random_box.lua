@@ -151,6 +151,7 @@ box.options[3] = { -- 벨류값이 0 이면 안됨.
 	['497'] = {chance=15, min=6, max=13},
 	['498'] = {chance=15, min=6, max=13},
 	['499'] = {chance=15, min=3, max=7},
+	['526'] = {chance=15, min=2, max=5},
 	['77'] = {chance=3, min=3333, max=6666},
 }
 box.options[4] = { -- 벨류값이 0 이면 안됨.
@@ -183,6 +184,7 @@ box.options[4] = { -- 벨류값이 0 이면 안됨.
 	['497'] = {chance=50, min=14, max=25},
 	['498'] = {chance=50, min=14, max=25},
 	['499'] = {chance=50, min=7, max=12},
+	['526'] = {chance=50, min=4, max=8},
 	['77'] = {chance=12, min=12222, max=24444},
 	['505'] = {chance=20, min=1, max=1},
 }

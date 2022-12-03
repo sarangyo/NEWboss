@@ -1642,10 +1642,6 @@ Server.onRefreshStats.Add(function(unit)
 	unit.moveSpeed = Character(id).moveSpeed + (1-400/(400+GetStat(4)))*400
 	
 	SetStat(103, unit.moveSpeed)
-	
-	SetStat(6,5000000)
-	SetStat(7,5000000)
-	SetStat(0,600000)
 end)
 
 --[[

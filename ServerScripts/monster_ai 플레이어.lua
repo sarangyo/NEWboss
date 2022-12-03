@@ -814,19 +814,23 @@ for i=62, 85 do
 	Server.SetMonsterAI(i, FirstAttack)
 end
 
+local not_map = {68, 69, 78, 79, 97}
 function launch_attack()
 	if not unit or not unit.field then return end
 	local id = unit.field.dataID
-	local bool = id~=68 and id~=69 and id~=78 and id~=79
-	if bool then
-		local num = Global_weight(Global_player_party.players)
-		local t = {}
-		for i=1, num do
-			t[i] = Global_weight(Global_player_party.per)
+	for i, v in ipairs(not_map) do
+		if id == v then
+			return
 		end
-
-		unit.SetStringVar(13, Utility.JSONSerialize(t))
-		
-		unit.FireEvent('플레이어습격', Utility.JSONSerialize(t))
 	end
+	
+	local num = Global_weight(Global_player_party.players)
+	local t = {}
+	for i=1, num do
+		t[i] = Global_weight(Global_player_party.per)
+	end
+
+	unit.SetStringVar(13, Utility.JSONSerialize(t))
+	
+	unit.FireEvent('플레이어습격', Utility.JSONSerialize(t))
 end
