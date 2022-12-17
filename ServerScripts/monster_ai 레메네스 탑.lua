@@ -134,17 +134,17 @@ for _, v in ipairs(Global_tap.monster.id) do
 	Global_tap.monster.data[v] = {}
 end
 
-Global_tap.monster.data[113].var = {255000*0.7, 5000}
+Global_tap.monster.data[113].var = {255000*0.7, 2000}
 Global_tap.monster.data[113].stat = {0, 1} -- 슬라임킹
-Global_tap.monster.data[114].var = {289000*0.7, 5000}
+Global_tap.monster.data[114].var = {289000*0.7, 2000}
 Global_tap.monster.data[114].stat = {0, 1} -- 전투부엉
-Global_tap.monster.data[117].var = {232000*0.7, 20000, 20000}
-Global_tap.monster.data[117].stat = {0, 1, 3} -- 나무몬
-Global_tap.monster.data[116].var = {335000*0.55, 5000}
+Global_tap.monster.data[117].var = {232000*0.7, 10000}
+Global_tap.monster.data[117].stat = {0, 1} -- 나무몬
+Global_tap.monster.data[116].var = {335000*0.55, 2000}
 Global_tap.monster.data[116].stat = {0, 1} -- 엑스크로스
-Global_tap.monster.data[115].var = {357000*0.7, 20000}
+Global_tap.monster.data[115].var = {357000*0.7, 10000}
 Global_tap.monster.data[115].stat = {2, 3} -- 고블진혜
-Global_tap.monster.data[112].var = {388000*0.7, 5000}
+Global_tap.monster.data[112].var = {388000*0.7, 2000}
 Global_tap.monster.data[112].stat = {0, 1} -- 시퍼런 도끼질
 
 
