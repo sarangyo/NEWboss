@@ -99,6 +99,8 @@ data['7'].item_dataID = 417
 data['7'][1] = {id=508, cost=500}
 data['7'][2] = {id=524, cost=200}
 data['7'][3] = {id=525, cost=200}
+data['7'][4] = {id=524, cost=250}
+data['7'][5] = {id=525, cost=250}
 
 local user_data = {}
 for i=1, 300 do

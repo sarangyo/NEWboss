@@ -40,6 +40,46 @@ String['/user'] = function(unit)
 	end
 end
 
+String['저 지금 감옥인데'] = function(unit)
+	if unit.GetVar(152)==1 and unit.GetVar(153)==0 then
+		unit.SetVar(152, 2)
+		local u = unit.field.GetEventUnitByName('수니몬')
+		u.say('<size=18>고마워! 나에게 다시 말을 걸어줘</size>')
+	end
+end
+
+String['너무 심심해요'] = function(unit)
+	if unit.GetVar(152)==2 and unit.GetVar(153)==0 then
+		unit.SetVar(152, 3)
+		local u = unit.field.GetEventUnitByName('수니몬')
+		u.say('<size=18>고마워! 어렵지 않지?</size>')
+	end
+end
+
+String['절대 사고치지 마세요'] = function(unit)
+	if unit.GetVar(152)==3 and unit.GetVar(153)==0 then
+		unit.SetVar(152, 4)
+		local u = unit.field.GetEventUnitByName('수니몬')
+		u.say('<size=18>고마워! 제법인걸?</size>')
+	end
+end
+
+String['수니몬님 감사합니다'] = function(unit)
+	if unit.GetVar(152)==4 and unit.GetVar(153)==0 then
+		unit.SetVar(152, 5)
+		local u = unit.field.GetEventUnitByName('수니몬')
+		u.say('<size=18>나도 감사해ㅎㅎ</size>')
+	end
+end
+
+String['우리유저님들 고맙습니다'] = function(unit)
+	if unit.GetVar(152)==5 and unit.GetVar(153)==0 then
+		unit.SetVar(152, 6)
+		local u = unit.field.GetEventUnitByName('수니몬')
+		u.say('<size=18>역시 멋져!</size>')
+	end
+end
+
 local FindStr = {}
 local Sub = string.sub
 FindStr['/출두'] = function(unit, text)

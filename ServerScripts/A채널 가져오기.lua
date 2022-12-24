@@ -152,8 +152,15 @@ m(91, m(75, folder)).channelCount = 5 --[[위험1]] Global_map[91] = 5
 m(92, m(75, folder)).channelCount = 5 --[[위험2]] Global_map[92] = 5
 m(96, m(95, folder)).channelCount = 99 --[[내부]] Global_map[96] = 99
 
-
-
+m(98, m(95, folder)).channelCount = 25 --[[터커즈 필드]] Global_map[98] = 25
+m(100, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드2]] Global_map[100] = 25
+m(101, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드3]] Global_map[101] = 25
+m(102, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드4]] Global_map[102] = 25
+m(103, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드5]] Global_map[103] = 25
+m(105, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드6]] Global_map[105] = 25
+m(106, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드7]] Global_map[106] = 25
+m(107, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드8]] Global_map[107] = 25
+m(108, m(98, m(95, folder))).channelCount = 5 --[[스태틱 케이브]] Global_map[108] = 5
 
 
 

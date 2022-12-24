@@ -487,8 +487,8 @@ function test2(data, i, j, n, UnitGold, bb)
 	data2.CountPanelText.textAlign = 1
 
 	data2.CountPanel.AddChild(data2.CountPanelText)
-
-	data2.PlusButtonX10 = Button('+10', Rect(175, 272.5, 65, 25))
+--[[
+	data2.PlusButtonX10 = Button('+1', Rect(175, 272.5, 65, 25))
 	local PlusButtonX10Img =  Image(path..'취소.PNG',Rect(175, 272.5, 65, 25))
 	asd.AddChild(PlusButtonX10Img)
 	data2.PlusButtonX10.setOpacity(0)
@@ -496,34 +496,35 @@ function test2(data, i, j, n, UnitGold, bb)
 	asd.AddChild(data2.PlusButtonX10)
 
 	data2.PlusButtonX10.onClick.Add(function()
-		if ItemCountVar >= 990 then
+		if ItemCountVar >= 10 then
 			return false
 		end
-		ItemCountVar = ItemCountVar + 10
+		ItemCountVar = ItemCountVar + 1
 		data2.CountPanelText.text = ItemCountVar
 		data.ItemMakerVar = ItemCountVar
 		CountUpData(data2.NowItemCoeuntText, t1.gold[j], t1.itemcount[J], ItemCountVar, UnitGold, data2.ItemCoeuntText, t2.data[J])
 	end)
-
-	data2.PlusButtonX100 = Button('+100', Rect(100, 272.5, 65, 25))
-	local PlusButtonX100 =  Image(path..'취소.PNG',Rect(100, 272.5, 65, 25))
+]]
+	data2.PlusButtonX100 = Button('+10', Rect(175, 272.5, 65, 25))
+	local PlusButtonX100 =  Image(path..'취소.PNG',Rect(175, 272.5, 65, 25))
 	asd.AddChild(PlusButtonX100)
 	data2.PlusButtonX100.setOpacity(0)
 	data2.PlusButtonX100.textSize = 12
 	asd.AddChild(data2.PlusButtonX100)
 
 	data2.PlusButtonX100.onClick.Add(function()
-		if ItemCountVar >= 900 then
+		--[[if ItemCountVar >= 900 then
 			return false
-		end
-		ItemCountVar = ItemCountVar + 100
+		end]]
+		--ItemCountVar = ItemCountVar + 100
+		ItemCountVar = 10
 		data2.CountPanelText.text = ItemCountVar
 		data.ItemMakerVar = ItemCountVar
 		CountUpData(data2.NowItemCoeuntText, t1.gold[j], t1.itemcount[J], ItemCountVar, UnitGold, data2.ItemCoeuntText, t2.data[J])
 	end)
-
-	data2.ResetButton = Button('Reset', Rect(25, 272.5, 65, 25))
-	local ResetButton =  Image(path..'취소.PNG', Rect(25, 272.5, 65, 25))
+	
+	data2.ResetButton = Button('Reset', Rect(100, 272.5, 65, 25))
+	local ResetButton =  Image(path..'취소.PNG', Rect(100, 272.5, 65, 25))
 	asd.AddChild(ResetButton)
 	data2.ResetButton.setOpacity(0)
 	data2.ResetButton.textSize = 12
@@ -541,7 +542,7 @@ function test2(data, i, j, n, UnitGold, bb)
 	asd.AddChild(data2.PlusButton)
 
 	data2.PlusButton.onClick.Add(function()
-		if ItemCountVar >= 1000 then
+		if ItemCountVar >= 10 then
 			return false
 		end
 		ItemCountVar = ItemCountVar + 1

@@ -814,7 +814,7 @@ for i=62, 85 do
 	Server.SetMonsterAI(i, FirstAttack)
 end
 
-local not_map = {68, 69, 78, 79, 97}
+local not_map = {68, 69, 78, 79, 97, 99}
 function launch_attack()
 	if not unit or not unit.field then return end
 	local id = unit.field.dataID

@@ -313,6 +313,8 @@ frame(Menu_Panel, 'Pictures/큐브.png', '큐브상점', '공용이벤트', 46, 
 frame(Menu_Panel, 'Icons/잡템류/Item_0115.png', '음식도감', 'SKIN__', nil, 71, 135)
 frame(Menu_Panel, 'Pictures/캐릭터 선택창/보스얼굴01.png', '보스선택', '캐릭터_선택하기', nil, 132, 135)
 frame(Menu_Panel, 'Pictures/MakeUI/캡처 (1).png', '제작', 'make_Up', nil, 193, 135)
+frame(Menu_Panel, 'Pictures/분해UI/icon_filter2.png', '분해', '분해UI열기', nil, 10, 218)
+
 --frame(Menu_Panel, 'Icons/9감자괴물.png', '거래소', '거래소_open', nil, 193, 135)
 --frame(Menu_Panel, 'Icons/9감자괴물.png', '소포함', '소포함_open', nil, 10, 218)
 

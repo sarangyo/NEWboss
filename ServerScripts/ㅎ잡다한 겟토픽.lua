@@ -24,7 +24,7 @@ Server.GetTopic("쫀쫀이발광").Add(function(x, y)
 end)
 
 Server.GetTopic("습격맵이동").Add(function()
-	if unit.field.dataID==97 then
+	if unit.field.dataID==97 or unit.field.dataID==99 then
 		return
 	end
 	unit.SetVar(67, unit.x)

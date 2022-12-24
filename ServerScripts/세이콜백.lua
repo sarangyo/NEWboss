@@ -39,11 +39,34 @@ for Eng, v in pairs(EngTable) do
 	end
 end
 
-
+local txt1 = {
+	'저 지금 감옥인데',
+	'너무 심심해요',
+	'절대 사고치지 마세요',
+	'수니몬님 감사합니다',
+	'우리유저님들 고맙습니다'
+}
 Server.sayCallback = function(player, text, sayType)
 	local unit = player.unit
+	
 	if String[text] then
 		String[text](unit)
+	elseif unit.field.dataID == 99 then
+		if unit.GetVar(154)==1 then
+			local u = unit.field.GetEventUnitByName('수니몬')
+			u.say('<size=16>아쉽지만 감옥에서는 채팅을 할 수 없어.</size>')
+			return false
+		end
+		
+		if unit.GetVar(153)==0 then
+			for _, v in ipairs(txt1) do
+				if text~=v then
+					local u = unit.field.GetEventUnitByName('수니몬')
+					u.say('<size=18>나를 따라해줬으면 좋겠어ㅜ</size>')
+					return false
+				end
+			end
+		end
 	end
 	return true
 end
