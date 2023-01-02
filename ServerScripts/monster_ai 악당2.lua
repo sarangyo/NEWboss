@@ -21,7 +21,17 @@ Server.SetMonsterAI(109, function(enemy, ai, event, data)
 end)
 
 Server.SetMonsterAI(110, function(enemy, ai, event, data)
-    if (event == AI_UPDATE) then 
+	if (event == AI_ATTACKED) then
+        if ai.GetTargetUnit() then
+			ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
+        else
+            if ai.GetTargetUnit() ~= ai.GetAttackedUnit() then
+                ai.SetTargetUnit(ai.GetAttackedUnit())
+                ai.SetFollowTarget(true)
+				ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
+            end
+        end
+    elseif (event == AI_UPDATE) then 
         if (enemy.field.playerCount <=0) then
             ai.SetTargetUnit(nil)
 
@@ -64,17 +74,7 @@ Server.SetMonsterAI(110, function(enemy, ai, event, data)
 		end
     end
 
-    if (event == AI_ATTACKED) then
-        if ai.GetTargetUnit() then
-			ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
-        else
-            if ai.GetTargetUnit() ~= ai.GetAttackedUnit() then
-                ai.SetTargetUnit(ai.GetAttackedUnit())
-                ai.SetFollowTarget(true)
-				ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
-            end
-        end
-    end
+    
 end)
 
 local function sk111(x, y, taget, ai, unit)-- 1.3 ~ 6.0
@@ -94,7 +94,17 @@ local function sk111(x, y, taget, ai, unit)-- 1.3 ~ 6.0
 end
 
 Server.SetMonsterAI(111, function(enemy, ai, event, data)
-    if (event == AI_UPDATE) then 
+	if (event == AI_ATTACKED) then
+        if ai.GetTargetUnit() then
+			ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
+        else
+            if ai.GetTargetUnit() ~= ai.GetAttackedUnit() then
+                ai.SetTargetUnit(ai.GetAttackedUnit())
+                ai.SetFollowTarget(true)
+				ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
+            end
+        end
+    elseif (event == AI_UPDATE) then 
         if (enemy.field.playerCount <=0) then
             ai.SetTargetUnit(nil)
 
@@ -133,21 +143,60 @@ Server.SetMonsterAI(111, function(enemy, ai, event, data)
 			sk111(enemy.x, enemy.y, ai.GetTargetUnit(), ai, enemy)
 		end
     end
+end)
 
-    if (event == AI_ATTACKED) then
-        if ai.GetTargetUnit() then
-			ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
+
+
+Server.SetMonsterAI(138, function(enemy, ai, event, data)
+	if (event == AI_ATTACKED) then
+		local u = ai.GetTargetUnit()
+		
+		if u then
+			local dist = ai.Distance(enemy.x, enemy.y, u.x, u.y)
+			if dist < 1000 then
+				if rand(1, 10)==1 then
+					u.SendSay('검은 미카엘 : 가까이에서 싸우자 나약한 녀석아')
+				end
+				enemy.AddHP(data.damage)
+				return
+			end
+		
+			u.FireEvent("bh", enemy.hp, enemy.monsterID)
         else
-            if ai.GetTargetUnit() ~= ai.GetAttackedUnit() then
+            if u ~= ai.GetAttackedUnit() then
                 ai.SetTargetUnit(ai.GetAttackedUnit())
                 ai.SetFollowTarget(true)
 				ai.GetTargetUnit().FireEvent("bh", enemy.hp, enemy.monsterID)
             end
         end
+    elseif (event == AI_UPDATE) then
+        if (enemy.field.playerCount <=0) then
+            ai.SetTargetUnit(nil)
+
+        elseif (ai.GetTargetUnit()==nil)
+               or (enemy.field.GetUnit(ai.GetTargetUnitID())==nil)
+               or (math.abs(enemy.x-enemy.field.GetUnit(ai.GetTargetUnitID()).x) >= 2000) 
+               or (math.abs(enemy.y-enemy.field.GetUnit(ai.GetTargetUnitID()).y) >= 2000) then
+
+            ai.SetFollowTarget(false) --타겟이 사라졌으면 추적을 비활성화 
+            ai.SetTargetUnit(nil)
+            ai.SetNearTarget(0, 1500)
+
+            if ai.GetTargetUnit() ~= nil then 
+                ai.SetFollowTarget(true) 
+            end
+        end
+		
+        if ai.GetTargetUnit() == nil then
+            return
+        end
+		
+		local u = ai.GetTargetUnit()
+		if u then
+			ai.UseSkillToPosition(85, nil, Point(u.x, u.y))
+		end
     end
 end)
-
-
 
 
 

@@ -287,9 +287,9 @@ local function box_table(index)
 	print(txt)
 end
 
-Server.RunLater(function()
-	-- box_table(2)
-end, 1)
+--[[Server.RunLater(function()
+	box_table(4)
+end, 1)]]
 
 function random_box(num, box_dataID)
 	if unit.CountItem(box_dataID) < 1 then

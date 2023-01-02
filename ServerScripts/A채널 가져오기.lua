@@ -162,6 +162,17 @@ m(106, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드7]] Global_ma
 m(107, m(98, m(95, folder))).channelCount = 25 --[[터커즈 필드8]] Global_map[107] = 25
 m(108, m(98, m(95, folder))).channelCount = 5 --[[스태틱 케이브]] Global_map[108] = 5
 
+m(109, m(95, folder)).channelCount = 25 --[[임시 필드]] Global_map[109] = 25
+m(110, m(109, m(95, folder))).channelCount = 25 --[[임시 필드2]] Global_map[110] = 25
+m(111, m(109, m(95, folder))).channelCount = 25 --[[임시 필드3]] Global_map[111] = 25
+m(112, m(109, m(95, folder))).channelCount = 25 --[[임시 필드4]] Global_map[112] = 25
+m(113, m(109, m(95, folder))).channelCount = 25 --[[임시 필드5]] Global_map[113] = 25
+m(114, m(109, m(95, folder))).channelCount = 25 --[[임시 필드6]] Global_map[114] = 25
+m(115, m(109, m(95, folder))).channelCount = 25 --[[임시 필드7]] Global_map[115] = 25
+m(116, m(109, m(95, folder))).channelCount = 25 --[[임시 필드8]] Global_map[116] = 25
+m(117, m(109, m(95, folder))).channelCount = 25 --[[임시 필드9]] Global_map[117] = 25
+m(118, m(109, m(95, folder))).channelCount = 25 --[[임시 필드10]] Global_map[118] = 25
+m(119, m(109, m(95, folder))).channelCount = 25 --[[임시 필드11]] Global_map[119] = 25
 
 
 

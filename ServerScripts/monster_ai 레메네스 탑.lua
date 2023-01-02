@@ -1,7 +1,7 @@
 Global_tap = {}
-Global_tap.UseCarrot = 20000 -- 입장시 필요한 당근
-Global_tap.DefaultCarrot = 100 -- 1층 기본 당근
-Global_tap.AddCarrot = 0.86 -- 상승 지수 당근
+Global_tap.UseCarrot = 12000 -- 입장시 필요한 당근
+Global_tap.DefaultCarrot = 110 -- 1층 기본 당근
+Global_tap.AddCarrot = 0.83 -- 상승 지수 당근
 
 Global_tap.monster = {} -- 몬스터 정보
 Global_tap.monster.id = {112, 113, 114, 115, 116, 117} -- 탑에 등장할 몬스터
@@ -134,17 +134,17 @@ for _, v in ipairs(Global_tap.monster.id) do
 	Global_tap.monster.data[v] = {}
 end
 
-Global_tap.monster.data[113].var = {255000*0.7, 2000}
+Global_tap.monster.data[113].var = {255000*0.23, 2000}
 Global_tap.monster.data[113].stat = {0, 1} -- 슬라임킹
-Global_tap.monster.data[114].var = {289000*0.7, 2000}
+Global_tap.monster.data[114].var = {289000*0.23, 2000}
 Global_tap.monster.data[114].stat = {0, 1} -- 전투부엉
-Global_tap.monster.data[117].var = {232000*0.7, 10000}
+Global_tap.monster.data[117].var = {232000*0.23, 10000}
 Global_tap.monster.data[117].stat = {0, 1} -- 나무몬
-Global_tap.monster.data[116].var = {335000*0.55, 2000}
+Global_tap.monster.data[116].var = {335000*0.18, 2000}
 Global_tap.monster.data[116].stat = {0, 1} -- 엑스크로스
-Global_tap.monster.data[115].var = {357000*0.7, 10000}
+Global_tap.monster.data[115].var = {357000*0.23, 10000}
 Global_tap.monster.data[115].stat = {2, 3} -- 고블진혜
-Global_tap.monster.data[112].var = {388000*0.7, 2000}
+Global_tap.monster.data[112].var = {388000*0.23, 2000}
 Global_tap.monster.data[112].stat = {0, 1} -- 시퍼런 도끼질
 
 
@@ -308,7 +308,7 @@ Server.SetMonsterAI(113, function(enemy, ai, event, data)
 			u.FireEvent("bh", enemy.hp, enemy.monsterID)
 			u.ShowAnimation(112)
 			local num = enemy.customData.phase and enemy.customData.phase or 0.01
-			u.AddDamage(data.damage*0.01*num)
+			u.AddDamage(data.damage*0.01*num*0.5)
 		end
 		enemy.ShowAnimation(105)
 		return

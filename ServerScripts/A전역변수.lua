@@ -511,6 +511,20 @@ Global_random_weight.paper = {
 	},
 }
 
+Global_random_weight.paper2 = { -- 자동옵션부여
+	[323] = 324,
+	[378] = 324,
+	[379] = 324,
+	[380] = 324,
+	[381] = 324,
+	[382] = 324,
+	[472] = 501,
+	[473] = 501,
+	[474] = 501,
+	[475] = 501,
+	[476] = 501,
+}
+
 Global_random_weight[323] = {}
 Global_random_weight[323].stat = {0, 2, 4, 5, 6, 7, 104}
 Global_random_weight[323].value = {}
@@ -797,9 +811,46 @@ Global_random_weight[476].weight = {
 	[10] = 979,
 }
 
+function AddOptionRune() -- 자동옵션 부여 만들기
+	local dumyTable = {}
+	local i = 1
+	for _, v in ipairs(unit.player.GetItems()) do
+		if Global_random_weight[v.dataID] and v.level==0 then
+			dumyTable[i] = {
+				dataID = v.dataID,
+				id = v.id
+			}
+			i = i+1
+		end
+	end
+	
+	if #dumyTable >= 10 then
+		unit.FireEvent('자동옵션부여', Utility.JSONSerialize(dumyTable))
+	else
+		unit.SendCenterLabel('부여가능한 룬이 10개 이상일 때 가능합니다.')
+	end
+end
+--[[
+/script AddOptionRune()
+]]
+Server.GetTopic('옵션부여중').Add(function(num, id)
+	local item = unit.player.GetItem(id)
+	local paper = Global_random_weight.paper2[item.dataID]
+	local bool = false
+	if item and item.level < 1 and unit.CountItem(paper) >= 1 then
+		bool = Global_random_weight:main(id, paper)
+	end
+	
+	if bool == true then
+		unit.FireEvent('옵션부여중', item.level, num)
+	else
+		unit.SendCenterLabel('중단되었습니다.')
+		unit.FireEvent('옵션부여중단', num)
+	end
+end)
+
 function Global_random_weight:main(id, num)
 	local item = unit.player.GetItem(id)
-	
 	if self[item.dataID] and item.options[1]==nil and unit.CountItem(num) >= 1 and self.paper[num][item.dataID] then
 		local dataID = item.dataID
 		local index = weight(self[item.dataID].weight)
@@ -821,9 +872,11 @@ function Global_random_weight:main(id, num)
 		end
 		unit.SendCenterLabel('옵션부여를 성공하였습니다.')
 		unit.PlaySE('룬 효과음/호박룬 옵션부여.ogg', 1.5)
+		return true
 	else
 		unit.SendCenterLabel('옵션부여를 실패하였습니다.')
 	end
+	return false
 end
 
 local function box_table(T)
@@ -938,6 +991,12 @@ Global_FaceRune[16] = {
 	var = 93,
 	maxCount = 1,
 	per = 10
+}
+Global_FaceRune[17] = {
+	id = 446,
+	var = 94,
+	maxCount = 3,
+	per = 5
 }
 function Global_FaceRune.main(tier)
 	local data = Global_FaceRune[tier]

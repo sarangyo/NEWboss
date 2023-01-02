@@ -27,8 +27,39 @@ Client.GetTopic('보따리_열기').Add(function(num)
 	end
 end)
 
+local sos = false
+local function dd()
+	if sos==true then return end
+	sos = true
+	local pal = Panel(Rect(0, 0, Client.width, Client.height))
+	pal.color = Color(0, 0, 0, 100)
+	pal.showOnTop = true
+	
+	local UIrect = Rect(0, 0, 236, 33)
+	for i=1, 11 do
+		local but = Button(){
+			rect = UIrect,
+			anchor = 1,
+			pivot = Point(0.5, -1.05*i),
+			opacity = 0,
+			parent = pal,
+		}
+		but.AddChild(Image('Pictures/잡/임시필드.png', UIrect))
+		but.AddChild(Text('임시 필드'..i, UIrect){
+			textSize = 15,
+			textAlign = 4,
+			color = Color(234, 234, 234),
+			borderEnabled = true
+		})
+		but.onClick.Add(function()
+			Client.FireEvent('임시필드', i)
+			sos = false
+			pal.Destroy()
+		end)
+	end
+end
 
-
+Client.GetTopic('임시필드').Add(dd)
 
 
 
